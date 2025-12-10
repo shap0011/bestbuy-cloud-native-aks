@@ -90,10 +90,10 @@ Both are publicly accessible through AKS LoadBalancer services.
 
 All custom images were pushed to Docker Hub:
 
-dockeridolgadh2022/product-service:dev
-dockeridolgadh2022/order-service:dev
-dockeridolgadh2022/store-front:dev
-dockeridolgadh2022/store-admin:dev
-dockeridolgadh2022/makeline-service:dev
+dockeridolgadh2022/product-service:dev<br/>
+dockeridolgadh2022/order-service:dev<br/>
+dockeridolgadh2022/store-front:dev<br/>
+dockeridolgadh2022/store-admin:dev<br/>
+dockeridolgadh2022/makeline-service:dev<br/>
 
 ---
