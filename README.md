@@ -185,3 +185,31 @@ RabbitMQ also received:
 - 5Gi persistent volume for message durability
 
 ---
+
+## 8. Testing the System
+
+### 8.1 Test Product Service
+
+```
+kubectl exec -it curlpod -- curl http://product-service:3002/
+```
+
+### 8.2 Test Order Creation (From Store Front)
+
+Open:<br/>
+http://4.239.161.203/
+
+- Add item to cart
+- Place order
+
+Order goes → RabbitMQ → Makeline → MongoDB → visible in Store Admin
+
+### 8.3 Confirm Order Saved in MongoDB
+
+Inside makeline logs:
+
+```
+kubectl logs deployment/makeline-service
+```
+
+---
