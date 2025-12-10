@@ -33,3 +33,30 @@ This project demonstrates:
 - A fully themed Best Buy–style front-end and admin UI
 
 ---
+
+## 2. Architecture Overview
+
+### System Architecture Diagram
+
+```mermaid
+flowchart LR
+    subgraph Cluster[AKS Cluster]
+        ProductService --> RabbitMQ
+        OrderService --> RabbitMQ
+        MakelineService --> MongoDB
+        StoreFront --> OrderService
+        StoreFront --> ProductService
+        StoreAdmin --> ProductService
+        StoreAdmin --> MakelineService
+
+        OrderService --> MakelineService
+    end
+
+    User --> LoadBalancerFront
+    LoadBalancerFront --> StoreFront
+
+    Admin --> LoadBalancerAdmin
+    LoadBalancerAdmin --> StoreAdmin
+```
+
+---
