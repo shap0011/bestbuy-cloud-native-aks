@@ -342,7 +342,7 @@ The other folders correspond to separate GitHub repositories for each microservi
 
 In GitHub, each of the microservice repos uses its own remote, and they are **not nested** inside the `bestbuy-cloud-native-aks` repository. This keeps each service independent and avoids “git inside git” problems.
 
-### 12.3 Repository Purpose Clarification
+### 13.3 Repository Purpose Clarification
 
 This repository (**bestbuy-cloud-native-aks**) serves as the **main submission repo** for the CST8915 final project.  
 It contains:
