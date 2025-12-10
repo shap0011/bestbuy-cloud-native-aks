@@ -60,3 +60,17 @@ flowchart LR
 ```
 
 ---
+
+## 3. Microservices Overview
+
+| Service              | Description                                       | Image                                     |
+| -------------------- | ------------------------------------------------- | ----------------------------------------- |
+| **Product Service**  | Returns product list and product details          | `dockeridolgadh2022/product-service:dev`  |
+| **Order Service**    | Receives customer orders, sends messages to queue | `dockeridolgadh2022/order-service:dev`    |
+| **Makeline Service** | Processes queued orders, stores them in MongoDB   | `dockeridolgadh2022/makeline-service:dev` |
+| **Store Front**      | Customer UI to order products                     | `dockeridolgadh2022/store-front:dev`      |
+| **Store Admin**      | Back-office UI to monitor orders                  | `dockeridolgadh2022/store-admin:dev`      |
+| **MongoDB**          | Stores processed orders                           | StatefulSet                               |
+| **RabbitMQ**         | Message broker for order workflow                 | StatefulSet                               |
+
+---
