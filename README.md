@@ -342,4 +342,29 @@ The other folders correspond to separate GitHub repositories for each microservi
 
 In GitHub, each of the microservice repos uses its own remote, and they are **not nested** inside the `bestbuy-cloud-native-aks` repository. This keeps each service independent and avoids “git inside git” problems.
 
+### 12.3 Repository Purpose Clarification
+
+This repository (**bestbuy-cloud-native-aks**) serves as the **main submission repo** for the CST8915 final project.  
+It contains:
+
+- Kubernetes deployment manifests
+- ConfigMaps, Secrets, StatefulSets, Deployments
+- AKS cluster configuration
+- Screenshots, documentation, and the final README
+
+**Important:**  
+This repo does **not** contain the source code for the individual microservices.
+
+Each microservice is intentionally kept in its **own separate GitHub repository**, following proper microservice architecture practices:
+
+- `product-service-L8`
+- `order-service-L8`
+- `makeline-service-L8`
+- `store-front-L8`
+- `store-admin-L8`
+
+The AKS manifests in this repository simply reference the Docker images that were built from those separate repos.<br/>
+
+This separation prevents “nested Git repos” issues and is the correct structure for microservices in Kubernetes.
+
 ---
