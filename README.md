@@ -4,12 +4,39 @@
 
 ---
 
+## Links
+
+<div align="left">
+
+- [Main Repository](https://github.com/shap0011/bestbuy-cloud-native-aks)
+- [Docker Images](https://hub.docker.com/repository/docker/dockeridolgadh2022/makeline-service/general)
+- [Kubernetes Manifests]()
+- [Deployed Store Front](http://4.239.161.203/)
+- [Deployed Store Admin](http://4.239.162.36/)
+- [Video Demo]()
+
+</div>
+
+---
+
 ## Student Information
 
 - **Name:** Olga Durham
 - **Student ID:** 040687883
 - **Course:** CST8915 – Full-Stack Cloud-Native Development
 - **Semester:** Fall 2025
+
+---
+
+## Technologies (At a Glance)
+
+- Microservices (Node.js, Rust, Go)
+- AKS (Azure Kubernetes Service)
+- MongoDB StatefulSet (3 replicas + PVC per pod)
+- RabbitMQ StatefulSet (persistent queues)
+- RabbitMQ + MongoDB custom images
+- Ingress via LoadBalancer
+- Custom DockerHub images (dockeridolgadh2022/...)
 
 ---
 
