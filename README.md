@@ -224,7 +224,42 @@ The original professor template included an unused **AI microservice**, which wa
 
 ---
 
-## 10. Challenges & Solutions
+## 10. UI Customization – Best Buy Branding
+
+One of the key goals of this project was to **re-theme the original Algonquin Pet Store UI into a Best Buy–style application**.
+
+### Store Front (Customer UI)
+
+In the `store-front-L8` project, I made the following changes:
+
+- **Header / Title / Branding**
+
+  - Updated the main app title to reference **Best Buy** instead of “Algonquin Pet Store”.
+  - Updated navbar labels and footer text to match the new branding.
+
+- **Colors and Layout**
+
+  - Updated global CSS to use a **blue + yellow** palette similar to Best Buy.
+  - Adjusted button styles (hover, focus, primary color).
+  - Tweaked card styles for product tiles.
+
+- **Content & Images**
+  - Updated product names, descriptions, and images to resemble **Best Buy product cards** (e.g., electronics, gadgets).
+  - Replaced demo pet images with Best Buy–style product images (stored in the front-end assets folder or served via URLs).
+
+### Store Admin (Back-office UI)
+
+In the `store-admin-L8` project:
+
+- Renamed labels from “Pet Store Admin” to **“Best Buy Admin”** / “Order Management”.
+- Updated colors to match the same blue/yellow theme as the store-front.
+- Kept the same functionality (view orders from MongoDB, manage order status), but under the new branding.
+
+> These changes ensure that, even though the backend architecture comes from the Algonquin Pet Store demo, the **user experience clearly represents a Best Buy–style cloud-native application.**
+
+---
+
+## 11. Challenges & Solutions
 
 ### 1. StatefulSet Cannot Update Certain Fields
 
@@ -264,19 +299,19 @@ Prevented Order Service from failing on startup.
 
 ---
 
-## 11. AI Tools Used
+## 12. AI Tools Used
 
 - ChatGPT (architecture help, debugging, YAML corrections)
 - All code and configurations were reviewed and understood before final submission.
 
 ---
 
-## 12. Repository Structure and Links
+## 13. Repository Structure and Links
 
 This project follows a **multi-repository** structure.  
 Each microservice has its own GitHub repository, and the **AKS deployment + documentation** live in a separate repo.
 
-### 12.1 Local Folder Layout
+### 13.1 Local Folder Layout
 
 On my local machine, the project is organized like this:
 
@@ -294,7 +329,7 @@ C:\Git\25F_CST8915_Final
 Only `bestbuy-cloud-native-aks` is used as the **submission repo** for this lab.
 The other folders correspond to separate GitHub repositories for each microservice.
 
-### 12.2 Links Table (Repos + Docker Images)
+### 13.2 Links Table (Repos + Docker Images)
 
 | Service         | GitHub Repository                                                                  | Docker Image                                                                                                                      |
 | --------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
