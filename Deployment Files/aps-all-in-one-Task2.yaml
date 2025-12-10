@@ -331,7 +331,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: product-service
-          image: dockeridolgadh2022/product-service:dev # Custom product service image
+          image: dockeridolgadh2022/product-service:bestbuy-v2 # Custom product service image
           ports:
             - containerPort: 3002 # Product service listens on this port
           env: # Environment variables for configuration
