@@ -136,7 +136,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: order-service
-          image: dockeridolgadh2022/order-service:dev # Custom image for order service
+          image: ramymohamed/order-service-l8:latest # Custom image for order service
           ports:
             - containerPort: 3000 # Order service listens on this port
           env: # Environment variables for configuration
@@ -230,7 +230,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: makeline-service
-          image: dockeridolgadh2022/makeline-service:dev # Custom Makeline service image
+          image: ramymohamed/makeline-service-l8:latest # Custom Makeline service image
           ports:
             - containerPort: 3001 # Makeline service listens on this port
           env: # Environment variables for configuration
@@ -309,12 +309,12 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: product-service
-          image: dockeridolgadh2022/product-service:dev # Custom product service image
+          image: ramymohamed/product-service-l8:latest # Custom product service image
           ports:
             - containerPort: 3002 # Product service listens on this port
           env: # Environment variables for configuration
             - name: AI_SERVICE_URL
-              value: "" # URL for AI service integration
+              value: "http://ai-service:5001/" # URL for AI service integration
           resources: # Resource requests and limits
             requests:
               cpu: 1m
@@ -370,7 +370,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: store-front
-          image: dockeridolgadh2022/store-front:dev # Front-end store application
+          image: ramymohamed/store-front-l8:latest # Front-end store application
           ports:
             - containerPort: 8080 # Front-end app port
               name: store-front
@@ -440,7 +440,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: store-admin
-          image: dockeridolgadh2022/store-admin:dev # Admin interface for store
+          image: ramymohamed/store-admin-l8:latest # Admin interface for store
           ports:
             - containerPort: 8081 # Admin app port
               name: store-admin
@@ -490,3 +490,91 @@ spec:
   selector:
     app: store-admin
   type: LoadBalancer # Expose service externally via load balancer
+---
+# Deployment for AI Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-service
+  template:
+    metadata:
+      labels:
+        app: ai-service
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: ai-service
+          image: ramymohamed/ai-service-l8:latest
+          ports:
+            - containerPort: 5001
+          env:
+            - name: USE_AZURE_OPENAI # set to True for Azure OpenAI, False for Public OpenAI
+              value: "True"
+            - name: AZURE_OPENAI_API_VERSION
+              value: "2024-07-01-preview"
+            - name: AZURE_OPENAI_GPT_DEPLOYMENT_NAME # required if using Azure OpenAI
+              value: ""
+            - name: AZURE_OPENAI_GPT_ENDPOINT # required if using Azure OpenAI
+              value: ""
+            - name: AZURE_OPENAI_DALLE_ENDPOINT
+              value: ""
+            - name: AZURE_OPENAI_DALLE_DEPLOYMENT_NAME
+              value: ""
+            - name: OPENAI_GPT_API_KEY # always required
+              valueFrom:
+                secretKeyRef:
+                  name: openai-gpt-api-secret
+                  key: OPENAI_GPT_API_KEY
+            - name: OPENAI_DALLE_API_KEY # always required
+              valueFrom:
+                secretKeyRef:
+                  name: openai-dalle-api-secret
+                  key: OPENAI_DALLE_API_KEY
+          resources:
+            requests:
+              cpu: 20m
+              memory: 50Mi
+            limits:
+              cpu: 50m
+              memory: 128Mi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 60
+            failureThreshold: 3
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 3
+            failureThreshold: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 3
+            failureThreshold: 10
+            periodSeconds: 10
+---
+# Service for AI Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-service
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 5001
+      targetPort: 5001
+  selector:
+    app: ai-service
