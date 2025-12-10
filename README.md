@@ -296,14 +296,14 @@ The other folders correspond to separate GitHub repositories for each microservi
 
 ### 12.2 Links Table (Repos + Docker Images)
 
-| Service         | GitHub Repository          | Docker Image                                                                                                                      |
-| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Store Front     | `store-front-L8`           | [`dockeridolgadh2022/store-front:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-front/general)           |
-| Store Admin     | `store-admin-L8`           | [`dockeridolgadh2022/store-admin:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-admin/general)           |
-| Product Service | `product-service-L8`       | [`dockeridolgadh2022/product-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/product-service/general)   |
-| Order Service   | `order-service-L8`         | [`dockeridolgadh2022/order-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/order-service/general)       |
-| Makeline        | `makeline-service-L8`      | [`dockeridolgadh2022/makeline-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/makeline-service/general) |
-| AKS Manifests   | `bestbuy-cloud-native-aks` | _(N/A – manifests & docs only)_                                                                                                   |
+| Service         | GitHub Repository                                                                  | Docker Image                                                                                                                      |
+| --------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Store Front     | [`store-front-L8`](https://github.com/shap0011/store-front-L8)                     | [`dockeridolgadh2022/store-front:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-front/general)           |
+| Store Admin     | [`store-admin-L8`](https://github.com/shap0011/store-admin-L8)                     | [`dockeridolgadh2022/store-admin:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-admin/general)           |
+| Product Service | [`product-service-L8`](https://github.com/shap0011/product-service-L8)             | [`dockeridolgadh2022/product-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/product-service/general)   |
+| Order Service   | [`order-service-L8`](https://github.com/shap0011/order-service-L8)                 | [`dockeridolgadh2022/order-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/order-service/general)       |
+| Makeline        | [`makeline-service-L8`](https://github.com/shap0011/makeline-service-L8)           | [`dockeridolgadh2022/makeline-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/makeline-service/general) |
+| AKS Manifests   | [`bestbuy-cloud-native-aks`](https://github.com/shap0011/bestbuy-cloud-native-aks) | _(N/A – manifests & docs only)_                                                                                                   |
 
 In GitHub, each of the microservice repos uses its own remote, and they are **not nested** inside the `bestbuy-cloud-native-aks` repository. This keeps each service independent and avoids “git inside git” problems.
 
