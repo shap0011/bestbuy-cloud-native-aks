@@ -230,7 +230,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: makeline-service
-          image: ramymohamed/makeline-service-l8:latest # Custom Makeline service image
+          image: dockeridolgadh2022/makeline-service:dev # Custom Makeline service image
           ports:
             - containerPort: 3001 # Makeline service listens on this port
           env: # Environment variables for configuration
@@ -440,7 +440,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: store-admin
-          image: ramymohamed/store-admin-l8:latest # Admin interface for store
+          image: dockeridolgadh2022/store-admin:dev # Admin interface for store
           ports:
             - containerPort: 8081 # Admin app port
               name: store-admin
@@ -566,15 +566,15 @@ spec:
             periodSeconds: 10
 ---
 # Service for AI Service
-apiVersion: v1
-kind: Service
-metadata:
-  name: ai-service
-spec:
-  type: ClusterIP
-  ports:
-    - name: http
-      port: 5001
-      targetPort: 5001
-  selector:
-    app: ai-service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: ai-service
+# spec:
+#   type: ClusterIP
+#   ports:
+#     - name: http
+#       port: 5001
+#       targetPort: 5001
+#   selector:
+#     app: ai-service
