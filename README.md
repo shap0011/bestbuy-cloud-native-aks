@@ -9,7 +9,7 @@
 <div align="left">
 
 - [Main Repository](https://github.com/shap0011/bestbuy-cloud-native-aks)
-- [Docker Images](https://hub.docker.com/repository/docker/dockeridolgadh2022/makeline-service/general)
+- [Docker Images](https://hub.docker.com/repositories/dockeridolgadh2022)
 - [Kubernetes Manifests]()
 - [Deployed Store Front](http://4.239.161.203/)
 - [Deployed Store Admin](http://4.239.162.36/)
@@ -197,7 +197,7 @@ kubectl exec -it curlpod -- curl http://product-service:3002/
 ### 8.2 Test Order Creation (From Store Front)
 
 Open:<br/>
-http://4.239.161.203/
+[http://4.239.161.203/](http://4.239.161.203/)
 
 - Add item to cart
 - Place order
@@ -268,5 +268,43 @@ Prevented Order Service from failing on startup.
 
 - ChatGPT (architecture help, debugging, YAML corrections)
 - All code and configurations were reviewed and understood before final submission.
+
+---
+
+## 12. Repository Structure and Links
+
+This project follows a **multi-repository** structure.  
+Each microservice has its own GitHub repository, and the **AKS deployment + documentation** live in a separate repo.
+
+### 12.1 Local Folder Layout
+
+On my local machine, the project is organized like this:
+
+```text
+C:\Git\25F_CST8915_Final
+├── algonquin-pet-store-on-steroids/   # Original professor template repo (reference only)
+├── bestbuy-cloud-native-aks/          # ✅ Main submission repo (this README + Kubernetes manifests)
+├── product-service-L8/                # Rust product-service microservice
+├── order-service-L8/                  # Node.js order-service microservice
+├── makeline-service-L8/               # Go makeline-service microservice
+├── store-front-L8/                    # Vue.js store-front (customer UI)
+└── store-admin-L8/                    # Vue.js store-admin (admin UI)
+```
+
+Only `bestbuy-cloud-native-aks` is used as the **submission repo** for this lab.
+The other folders correspond to separate GitHub repositories for each microservice.
+
+### 12.2 Links Table (Repos + Docker Images)
+
+| Service         | GitHub Repository          | Docker Image                                                                                                                      |
+| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Store Front     | `store-front-L8`           | [`dockeridolgadh2022/store-front:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-front/general)           |
+| Store Admin     | `store-admin-L8`           | [`dockeridolgadh2022/store-admin:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/store-admin/general)           |
+| Product Service | `product-service-L8`       | [`dockeridolgadh2022/product-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/product-service/general)   |
+| Order Service   | `order-service-L8`         | [`dockeridolgadh2022/order-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/order-service/general)       |
+| Makeline        | `makeline-service-L8`      | [`dockeridolgadh2022/makeline-service:dev`](https://hub.docker.com/repository/docker/dockeridolgadh2022/makeline-service/general) |
+| AKS Manifests   | `bestbuy-cloud-native-aks` | _(N/A – manifests & docs only)_                                                                                                   |
+
+In GitHub, each of the microservice repos uses its own remote, and they are **not nested** inside the `bestbuy-cloud-native-aks` repository. This keeps each service independent and avoids “git inside git” problems.
 
 ---
