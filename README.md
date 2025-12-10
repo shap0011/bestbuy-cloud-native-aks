@@ -263,3 +263,10 @@ initContainers:
 Prevented Order Service from failing on startup.
 
 ---
+
+## 11. AI Tools Used
+
+- ChatGPT (architecture help, debugging, YAML corrections)
+- All code and configurations were reviewed and understood before final submission.
+
+---
