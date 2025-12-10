@@ -96,4 +96,31 @@ dockeridolgadh2022/store-front:dev<br/>
 dockeridolgadh2022/store-admin:dev<br/>
 dockeridolgadh2022/makeline-service:dev<br/>
 
+These images were then referenced inside the Kubernetes Deployment manifests.
+
+---
+
+## 6. Deployment to AKS
+
+### Task 1 — Deploying All Services
+
+All microservices were deployed using:
+
+```
+kubectl apply -f aps-all-in-one.yaml
+```
+
+This created:
+
+- Deployments for each service
+- Services (ClusterIP, LoadBalancer)
+- RabbitMQ + MongoDB (simple StatefulSet)
+
+Everything was verified with:
+
+```
+kubectl get pods
+kubectl get services
+```
+
 ---
