@@ -74,3 +74,10 @@ flowchart LR
 | **RabbitMQ**         | Message broker for order workflow                 | StatefulSet                               |
 
 ---
+
+## 4. Public URLs (LoadBalancer IPs)
+
+| Component                     | URL                                            |
+| ----------------------------- | ---------------------------------------------- |
+| **Store Front (Customer UI)** | [http://4.239.161.203/](http://4.239.161.203/) |
+| **Store Admin (Admin UI)**    | [http://4.239.162.36/](http://4.239.162.36/)   |
