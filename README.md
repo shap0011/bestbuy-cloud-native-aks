@@ -59,6 +59,9 @@ This project demonstrates:
 - Scaling & resilience
 - A fully themed Best Buy–style front-end and admin UI
 
+> Note: This repository does not include the source code for the microservices themselves.  
+> That code lives in separate GitHub repos, and this repo is used exclusively for deployment and documentation.
+
 ---
 
 ## 2. Architecture Overview
