@@ -151,3 +151,37 @@ kubectl get services
 ```
 
 ---
+
+## 7. Task 2 — Adding Persistent Storage & Scaling
+
+### 7.1 Scaling MongoDB to 3 Replicas
+
+A new `aps-all-in-one-Task2.yaml` file was created with:
+
+- **MongoDB StatefulSet scaled to 3 pods**
+- **Persistent Volume Claims (PVCs)** for each replica (5Gi each)
+
+Verification:
+
+```
+kubectl get statefulset
+kubectl get pvc
+kubectl get pods
+```
+
+Result:
+
+- mongodb-0
+- mongodb-1
+- mongodb-2
+
+Each had its own persistent volume.
+
+### 7.2 RabbitMQ Persistent Storage
+
+RabbitMQ also received:
+
+- A `volumeClaimTemplate`
+- 5Gi persistent volume for message durability
+
+---
