@@ -223,3 +223,43 @@ The original professor template included an unused **AI microservice**, which wa
 - The system now runs cleanly without AI dependencies.
 
 ---
+
+## 10. Challenges & Solutions
+
+### 1. StatefulSet Cannot Update Certain Fields
+
+Kubernetes forbids modifying immutable StatefulSet fields.
+
+Fix:
+Delete old StatefulSets but preserve data volumes:
+
+```
+kubectl delete statefulset mongodb --cascade=orphan
+kubectl delete statefulset rabbitmq --cascade=orphan
+```
+
+Re-apply YAML to recreate StatefulSets safely.
+
+### 2. AI Service Causing CrashLoopBackoff
+
+Environment variables required Azure secrets.<br/>
+Removing the AI service solved all issues.
+
+### 3. LoadBalancer Required Several Minutes to Assign Public IP
+
+Just a wait-time issue — resolved automatically.
+
+### 4. RabbitMQ Needed InitContainer Wait Logic
+
+Used:
+
+```
+initContainers:
+  - name: wait-for-rabbitmq
+    image: busybox
+    command: ["sh","-c","until nc -zv rabbitmq 5672; do echo waiting; sleep 2; done;"]
+```
+
+Prevented Order Service from failing on startup.
+
+---
