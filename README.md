@@ -81,3 +81,19 @@ flowchart LR
 | ----------------------------- | ---------------------------------------------- |
 | **Store Front (Customer UI)** | [http://4.239.161.203/](http://4.239.161.203/) |
 | **Store Admin (Admin UI)**    | [http://4.239.162.36/](http://4.239.162.36/)   |
+
+Both are publicly accessible through AKS LoadBalancer services.
+
+---
+
+## 5. Docker Images Used
+
+All custom images were pushed to Docker Hub:
+
+dockeridolgadh2022/product-service:dev
+dockeridolgadh2022/order-service:dev
+dockeridolgadh2022/store-front:dev
+dockeridolgadh2022/store-admin:dev
+dockeridolgadh2022/makeline-service:dev
+
+---
