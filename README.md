@@ -213,3 +213,13 @@ kubectl logs deployment/makeline-service
 ```
 
 ---
+
+## 9. Removing AI Service (Not Needed)
+
+The original professor template included an unused **AI microservice**, which was removed by:
+
+- Deleting it from Kubernetes YAML
+- Removing AI_SERVICE_URL or setting it to empty ("")
+- The system now runs cleanly without AI dependencies.
+
+---
