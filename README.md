@@ -229,83 +229,112 @@ The original professor template included an unused **AI microservice**, which wa
 
 ## 10. UI Customization – Best Buy Branding
 
-One of the key goals of this project was to **re-theme the original Algonquin Pet Store UI into a Best Buy–style application**.
+A key requirement of this project was transforming the original **Algonquin Pet Store** UI into a **Best Buy–style** storefront while keeping the existing backend microservices.
 
-### Store Front (Customer UI)
+### Store Front (Customer UI) – `store-front-L8`
 
-In the `store-front-L8` project, I made the following changes:
+The following UI/UX updates were applied:
 
-- **Header / Title / Branding**
+#### Branding & Logo
 
-  - Updated the main app title to reference **Best Buy** instead of “Algonquin Pet Store”.
-  - Updated navbar labels and footer text to match the new branding.
+- Replaced the original Algonquin Pet Store branding with a custom **Best Buy–style logo**.
+- Updated the navigation bar to reflect the new brand identity.
 
-- **Colors and Layout**
+#### Colors & Theme
 
-  - Updated global CSS to use a **blue + yellow** palette similar to Best Buy.
-  - Adjusted button styles (hover, focus, primary color).
-  - Tweaked card styles for product tiles.
+- Updated global styling to match Best Buy’s signature **blue + yellow palette**.
+- Adjusted:
+  - Navigation bar colors
+  - Product card accents
+  - Button hover + active states
+  - Background image (replaced with a clean AI-generated tech retail gradient)
 
-- **Content & Images**
-  - Updated product names, descriptions, and images to resemble **Best Buy product cards** (e.g., electronics, gadgets).
-  - Replaced demo pet images with Best Buy–style product images (stored in the front-end assets folder or served via URLs).
+#### Product Catalog Rebranding
 
-### Store Admin (Back-office UI)
+- Replaced all pet-themed products with **realistic Best Buy-style electronics**.
+- Updated:
+  - Product names
+  - Descriptions
+  - Pricing
+  - High-quality AI-generated product images (.png files)
+- All assets were placed inside the `public/` folder for direct serving by the Vue build.
 
-In the `store-admin-L8` project:
+### Store Admin (Back-office UI) – `store-admin-L8`
 
-- Renamed labels from “Pet Store Admin” to **“Best Buy Admin”** / “Order Management”.
-- Updated colors to match the same blue/yellow theme as the store-front.
-- Kept the same functionality (view orders from MongoDB, manage order status), but under the new branding.
+The admin interface was also updated to reflect the new theme:
 
-> These changes ensure that, even though the backend architecture comes from the Algonquin Pet Store demo, the **user experience clearly represents a Best Buy–style cloud-native application.**
+#### Branding Adjustments
+
+- Renamed interface labels from _“Pet Store Admin”_ to **“Best Buy Admin Panel”**.
+- Updated the header and navigation wording to match the Best Buy scenario.
+
+#### Styling Updates
+
+- Applied the same **blue/yellow theme** for consistency across the entire system.
+- Cleaned up UI spacing and card styling for a more modern dashboard look.
+
+> Even though the microservice architecture remained unchanged, the UI transformation delivers a clear Best Buy–inspired experience while maintaining all the cloud-native functionality.
 
 ---
 
 ## 11. Challenges & Solutions
 
-### 1. StatefulSet Cannot Update Certain Fields
+### 1. StatefulSet Immutable Fields
 
-Kubernetes forbids modifying immutable StatefulSet fields.
+Kubernetes does not allow updates to certain StatefulSet fields (e.g., volumeClaimTemplates, serviceName).
 
-Fix:
-Delete old StatefulSets but preserve data volumes:
+**Fix used:**
 
 ```
 kubectl delete statefulset mongodb --cascade=orphan
 kubectl delete statefulset rabbitmq --cascade=orphan
 ```
 
-Re-apply YAML to recreate StatefulSets safely.
+This removes the StatefulSet **without deleting the PVCs**, preserving data.<br/>
+Then the updated YAML was applied successfully.
 
-### 2. AI Service Causing CrashLoopBackoff
+### 2. AI Service Failures
 
-Environment variables required Azure secrets.<br/>
-Removing the AI service solved all issues.
+The original template included an **AI Service** requiring Azure OpenAI secrets.
+Without valid credentials, the pod entered _CreateContainerConfigError._
 
-### 3. LoadBalancer Required Several Minutes to Assign Public IP
+**Solution:** Remove the AI service deployment references entirely.
+The product service no longer depends on AI inference.
 
-Just a wait-time issue — resolved automatically.
+### 3. Azure LoadBalancer Delay
 
-### 4. RabbitMQ Needed InitContainer Wait Logic
+AKS LoadBalancer services require several minutes to allocate a public IP.
 
-Used:
+**Resolution:**
+Wait 2–5 minutes — the issue resolved itself when the service became active.
 
-```
+### 4. Order Service Starting Before RabbitMQ
+
+RabbitMQ needs ~10–20 seconds to become ready.
+Order Service crashed on startup because it attempted to connect immediately.
+
+**Fix: InitContainer Wait Logic**
+
+```yaml
 initContainers:
   - name: wait-for-rabbitmq
     image: busybox
-    command: ["sh","-c","until nc -zv rabbitmq 5672; do echo waiting; sleep 2; done;"]
+    command:
+      [
+        "sh",
+        "-c",
+        "until nc -zv rabbitmq 5672; do echo waiting; sleep 2; done;",
+      ]
 ```
 
-Prevented Order Service from failing on startup.
+This ensures RabbitMQ is reachable **before** Order Service launches.
 
 ---
 
 ## 12. AI Tools Used
 
-- ChatGPT (architecture help, debugging, YAML corrections)
-- All code and configurations were reviewed and understood before final submission.
+- **ChatGPT** - Assisted with debugging Kubernetes YAML - Helped design product catalog - Generated Best Buy–style background and product images - Provided deployment, Docker, and AKS troubleshooting guidance
+  All AI-generated solutions were reviewed, understood, and manually applied.
 
 ---
 
