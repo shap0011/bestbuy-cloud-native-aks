@@ -10,7 +10,7 @@
 
 - [Main Repository](https://github.com/shap0011/bestbuy-cloud-native-aks)
 - [Docker Images](https://hub.docker.com/repositories/dockeridolgadh2022)
-- [Kubernetes Manifests]()
+- [Kubernetes Manifests](https://github.com/shap0011/bestbuy-cloud-native-aks/blob/main/Deployment%20Files/aps-all-in-one-Task2.yaml)
 - [Deployed Store Front](http://4.239.161.203/)
 - [Deployed Store Admin](http://4.239.162.36/)
 - [Video Demo]()
