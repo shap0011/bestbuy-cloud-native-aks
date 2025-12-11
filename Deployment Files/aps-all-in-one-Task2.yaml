@@ -462,7 +462,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: store-admin
-          image: dockeridolgadh2022/store-admin:dev # Admin interface for store
+          image: dockeridolgadh2022/store-admin:bestbuy # Admin interface for store
           ports:
             - containerPort: 8081 # Admin app port
               name: store-admin
