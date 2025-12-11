@@ -265,13 +265,12 @@ The admin interface was also updated to reflect the new theme:
 
 #### Branding Adjustments
 
-- Renamed interface labels from _“Pet Store Admin”_ to **“Best Buy Admin Panel”**.
-- Updated the header and navigation wording to match the Best Buy scenario.
+- Updated logo.
 
 #### Styling Updates
 
 - Applied the same **blue/yellow theme** for consistency across the entire system.
-- Cleaned up UI spacing and card styling for a more modern dashboard look.
+- Updated the h3 heading color.
 
 > Even though the microservice architecture remained unchanged, the UI transformation delivers a clear Best Buy–inspired experience while maintaining all the cloud-native functionality.
 
