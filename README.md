@@ -270,7 +270,6 @@ The admin interface was also updated to reflect the new theme:
 #### Styling Updates
 
 - Applied the same **blue/yellow theme** for consistency across the entire system.
-- Updated the h3 heading color.
 
 > Even though the microservice architecture remained unchanged, the UI transformation delivers a clear Best Buy–inspired experience while maintaining all the cloud-native functionality.
 
@@ -327,6 +326,51 @@ initContainers:
 ```
 
 This ensures RabbitMQ is reachable **before** Order Service launches.
+
+### 5. Store Admin Global Text Color Override
+
+During UI customization of the **Store Admin** application, a styling conflict occurred:
+
+- An internal global style inside `store-admin-L8/src/App.vue` applies:
+
+```css
+#app {
+  color: #2c3e50;
+}
+```
+
+- This global color overrides the custom component-level styles, including:
+
+```css
+.order-list h3 {
+  color: #ffffff !important;
+}
+```
+
+Even after removing or modifying the `#app` color and rebuilding the Docker image, the deployed version continued to use the original styling.
+
+**Cause**
+
+Vue CLI sometimes caches compiled CSS inside the final production build, and the Kubernetes deployment still served old static assets, even when a new Docker image was created.
+
+**Current Status**
+
+The “No orders to process” message still appears with the default dark text instead of white.<br/>
+This issue does not affect functionality, orders, routing, or API actions — it is purely visual.
+
+**Workaround (Not Required for Submission)**
+
+- Version-bump the image tag each time (:bestbuy-v2, :bestbuy-v3)
+- Clear browser cache with **Ctrl+Shift+R**
+- Add **deep selector** to fully override Vue scoped styles:
+
+```css
+.order-list ::v-deep h3 {
+  color: #ffffff;
+}
+```
+
+Given project time constraints and that UI customization is a _bonus enhancement_, the issue is documented as recommended by the assignment.
 
 ---
 
