@@ -13,7 +13,7 @@
 - [Kubernetes Manifests](https://github.com/shap0011/bestbuy-cloud-native-aks/blob/main/Deployment%20Files/aps-all-in-one-Task2.yaml)
 - [Deployed Store Front](http://4.239.161.203/)
 - [Deployed Store Admin](http://4.239.162.36/)
-- [Video Demo]()
+- [Video Demo](https://youtu.be/cTUl0Hz1YYc)
 
 </div>
 
